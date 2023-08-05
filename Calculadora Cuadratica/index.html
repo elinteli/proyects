@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Cuadratica</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="nav">
+        <div class="nav__boton">
+            <input id="btnEcuacion" class="nav__input-radio" type="radio" name="btn" checked="">
+            <div class="nav__texto">
+                <span class="nav__span">Ecuación</span>
+            </div>
+        </div>
+        <div class="nav__boton">
+            <input id="btnFuncion" class="nav__input-radio" type="radio" name="btn">
+            <div class="nav__texto">
+                <span class="nav__span">Función</span>
+            </div>  
+        </div>
+        <div class="nav__boton">
+            <input id="btnDatosAEcuacion" class="nav__input-radio" type="radio" name="btn">
+            <div class="nav__texto">
+                <span class="nav__span">Datos a Ecuación</span>
+            </div>  
+        </div>
+    </div>
+    <div id="ecuacionContenedor" class="contenedor">
+        <input id="ecuacion" class="input" type="text" placeholder="Escriba una expresión algebraica"><br>
+        <div id="datosEcuacion">
+            Ecuación:
+            <br>
+            <div id="mostrarEcuacion" class="contenedor__ecuacion"></div>
+            <br>
+            <div class="contenedor__datos">
+                <div class="contenedor__abc">
+                    a = <span id="aEcuacion"></span>
+                    <br>
+                    b = <span id="bEcuacion"></span>
+                    <br>
+                    c = <span id="cEcuacion"></span>
+                </div>
+                <div class="contenedor__soluciones">
+                    <i>x</i><sub>1</sub>= <span id="resultadoUno"></span>
+                    <br>
+                    <i>x</i><sub>2</sub> = <span id="resultadoDos"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div id="funcionContenedor" class="contenedor">
+        <input id="inputFuncion" class="input" type="text" placeholder="Escriba una expresión algebraica"><br>
+        <div id="datosFuncion">
+            Función: 
+            <br>
+            <div class="contenedor__funcion-informacion"><i>f </i>(<i>x</i>) = <span id="ecuacionAlgebraicaFuncion"></span></div>
+            <div class="contenedor__funcion-informacion">
+                Raíces: <span id="raizUno"></span> y <span id="raizDos"></span>
+            </div>
+            <div class="contenedor__funcion-informacion">
+                Ordenada en el Orígen: <span id="ordenadaOrigen"></span>
+            </div>
+            <div class="contenedor__funcion-informacion">
+                Vértice: <span>( <span id="xVertice">x</span> ; <span id="yVertice">y</span> )</span>
+            </div>
+            <div class="contenedor__funcion-informacion">
+                Concavidad: <span id="concavidad"></span>
+            </div>
+            <div class="contenedor__funcion-informacion">
+                Eje de Simetría: <span id="ejeSimetria"></span>
+            </div>
+            <div class="contenedor__funcion-informacion">
+                <i>f</i> (<input id="input-imagen" class="input-chico" type="number">) = <span id="imagen"></span>
+            </div>
+            <div class="contenedor__funcion-informacion"><div id="mostrarEcuacionImagen">
+                a<i>x</i>² + b<i>x</i> + c</div> = <input id="input-preimagen" class="input-chico" type="number">
+                <br> 
+                <i>x</i><sub>1</sub>= <span id="resultadoX1"></span>
+                <br>
+                <i>x</i><sub>2</sub> = <span id="resultadoX2"></span>
+            </div>
+        </div>
+    </div>
+    <div id="datosAEcuacionContenedor" class="contenedor">
+        Encontrar función con raíces:<br>
+        <i>x</i><sub>1</sub> = <input id="inputX1Descomposicion" class="input-chico" type="number"><br>
+        <i>x</i><sub>2</sub> = <input id="inputX2Descomposicion" class="input-chico" type="number"><br><br>
+        Teniendo en cuenta que: <br>
+        <i>f</i> (<input id="xDelPuntoDescomposicion" class="input-chico" type="number">) = 
+        <input id="yDelPuntoDescomposicion" class="input-chico" type="number">
+        <br><br>
+        <div class="contenedor__ecuacion"><i>f </i>(<i>x</i>) = <span id="mostrarFuncionDescomposicion"></span></div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
