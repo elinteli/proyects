@@ -29,9 +29,6 @@ const spanPreimagenX2 = document.getElementById("resultadoX2");
 const datosEcuacion = document.getElementById("datosEcuacion");
 const datosFuncionDiv = document.getElementById("datosFuncion");
 const spanEcuacionFuncion = document.getElementById("ecuacionAlgebraicaFuncion");
-const inputX1Personalizada = document.getElementById("inputX1Personalizada");
-const inputX2Personalizada = document.getElementById("inputX2Personalizada");
-const divMostrarEcuacionPersonalizada = document.getElementById("mostrarEcuacionPersonalizada");
 const inputx1Descomposicion = document.getElementById("inputX1Descomposicion");
 const inputx2Descomposicion = document.getElementById("inputX2Descomposicion");
 const xDelPuntoDescomposicion = document.getElementById("xDelPuntoDescomposicion");
@@ -80,14 +77,6 @@ yDelPuntoDescomposicion.addEventListener('keypress', function(event) { //Cuando 
         mostrarFuncionDescomposicion.innerHTML = mostrarFuncionDescomposicion.innerHTML.replace(/1x/g,"x").replace("+ 0x","").replace("+ 0","").replace("- 0x","").replace("- 0","").replace(/\+ -/g,"- ").replace("x^2",`x²`).replace(/x/g,`<i>x</i>`);
     }
 });
-
-/*inputX2Personalizada.addEventListener('keypress', function(event) { //Cuando se presiona una tecla en el inputEcuacion
-    if (event.keyCode === 13) { // Si se presiona enter:
-        divMostrarEcuacionPersonalizada.innerHTML = encontrarABC(divMostrarEcuacionPersonalizada.innerHTML)[0] +"x^2 + "+ encontrarABC(divMostrarEcuacionPersonalizada.innerHTML)[1] +"x + "+ encontrarABC(divMostrarEcuacionPersonalizada.innerHTML)[2];
-        divMostrarEcuacionPersonalizada.innerHTML = `<i>x</i>² - `+(parseInt(inputX1Personalizada.value)+parseInt(inputX2Personalizada.value))+`<i>x</i>`+' + '+(parseInt(inputX1Personalizada.value)*parseInt(inputX2Personalizada.value));
-        divMostrarEcuacionPersonalizada.innerHTML = divMostrarEcuacionPersonalizada.innerHTML.replace(/1x/g,"x").replace("+ 0x","").replace("+ 0","").replace(/\+ -/g,"- ").replace("x^2",`x²`).replace(/x/g,`<i>x</i>`);
-    }
-});*/
 
 inputEcuacion.addEventListener('keypress', function(event) { //Cuando se presiona una tecla en el inputEcuacion
     if (event.keyCode === 13) { // Si se presiona enter:
