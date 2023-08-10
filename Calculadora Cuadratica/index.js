@@ -29,6 +29,9 @@ const spanPreimagenX2 = document.getElementById("resultadoX2");
 const datosEcuacion = document.getElementById("datosEcuacion");
 const datosFuncionDiv = document.getElementById("datosFuncion");
 const spanEcuacionFuncion = document.getElementById("ecuacionAlgebraicaFuncion");
+const inputX1Personalizada = document.getElementById("inputX1Personalizada");
+const inputX2Personalizada = document.getElementById("inputX2Personalizada");
+const divMostrarEcuacionPersonalizada = document.getElementById("mostrarEcuacionPersonalizada");
 const inputx1Descomposicion = document.getElementById("inputX1Descomposicion");
 const inputx2Descomposicion = document.getElementById("inputX2Descomposicion");
 const xDelPuntoDescomposicion = document.getElementById("xDelPuntoDescomposicion");
@@ -78,6 +81,14 @@ yDelPuntoDescomposicion.addEventListener('keypress', function(event) { //Cuando 
     }
 });
 
+/*inputX2Personalizada.addEventListener('keypress', function(event) { //Cuando se presiona una tecla en el inputEcuacion
+    if (event.keyCode === 13) { // Si se presiona enter:
+        divMostrarEcuacionPersonalizada.innerHTML = encontrarABC(divMostrarEcuacionPersonalizada.innerHTML)[0] +"x^2 + "+ encontrarABC(divMostrarEcuacionPersonalizada.innerHTML)[1] +"x + "+ encontrarABC(divMostrarEcuacionPersonalizada.innerHTML)[2];
+        divMostrarEcuacionPersonalizada.innerHTML = `<i>x</i>² - `+(parseInt(inputX1Personalizada.value)+parseInt(inputX2Personalizada.value))+`<i>x</i>`+' + '+(parseInt(inputX1Personalizada.value)*parseInt(inputX2Personalizada.value));
+        divMostrarEcuacionPersonalizada.innerHTML = divMostrarEcuacionPersonalizada.innerHTML.replace(/1x/g,"x").replace("+ 0x","").replace("+ 0","").replace(/\+ -/g,"- ").replace("x^2",`x²`).replace(/x/g,`<i>x</i>`);
+    }
+});*/
+
 inputEcuacion.addEventListener('keypress', function(event) { //Cuando se presiona una tecla en el inputEcuacion
     if (event.keyCode === 13) { // Si se presiona enter:
         datosEcuacion.style.display = "inline-block"; //se muestran los datos
@@ -113,6 +124,7 @@ inputEcuacion.addEventListener('keypress', function(event) { //Cuando se presion
         raiz2.innerHTML = bhaskara(aEcuacionAlgebraica, bEcuacionAlgebraica, cEcuacionAlgebraica, -1);
 
         datosFuncion();
+        graficar()
     }
   });
 
@@ -136,7 +148,6 @@ function encontrarABC(ecuacion){
     ecuacionAlgebraica = ecuacionAlgebraica.replace(/X/g,"x").replace("x2","x^2").replace("x²","x^2");
     valoresABCEcuacionAlgebraica = ecuacionAlgebraica;
     valoresABCEcuacionAlgebraica = valoresABCEcuacionAlgebraica.replace(/ /g, "").replace(/--/g, "+").replace(/-/g, "+-").split('+'); // saco los espacios, y separo en terminos creando un array
-    console.log(valoresABCEcuacionAlgebraica);
     valoresABCEcuacionAlgebraica = valoresABCEcuacionAlgebraica.filter(function(arrayElement) { //Recorro el array porque si hay alguno vacio
         return arrayElement !== ""; // Devuelvo los que no estan vacios
       });
@@ -192,4 +203,96 @@ function imagenYPreimagen(imagenPreimagen) {
         spanPreimagenX1.innerHTML = bhaskara(aEcuacionAlgebraica,bEcuacionAlgebraica,(cEcuacionAlgebraica + (inputPreimagen.value * (-1))), 1); //El numero del lado de la igualdad pasa lo cambiamos de lado como su opuesto y sumamos con semejantes(c)
         spanPreimagenX2.innerHTML = bhaskara(aEcuacionAlgebraica,bEcuacionAlgebraica,(cEcuacionAlgebraica + (inputPreimagen.value * (-1))), -1);
     }
+}
+
+function graficar(){
+    const canvas = document.getElementById("graficaCanvas");
+    const context = canvas.getContext("2d");
+    context.fillStyle = "white";
+    context.fillRect(0, 0, 400, 400);
+    context.scale(1*(8), 1*(8));
+    context.stroke();
+
+    // Lineas verticales
+    for (let i = 0; i < 11; i++){
+        context.beginPath();
+        context.moveTo(i*10, 0);
+        context.lineTo(i*10, 100);
+        context.strokeStyle = "#c8c8c8";
+        context.lineWidth = 0.5;
+        context.stroke();
+    }
+    
+    // Lineas horizontales
+    for (let i = 0; i < 11; i++){
+        context.beginPath();
+        context.moveTo(0, i*10);
+        context.lineTo(100, i*10);
+        context.strokeStyle = "#c8c8c8";
+        context.lineWidth = 0.5;
+        context.stroke();
+    }
+    // Indice de numeros x
+    for (let i = 0; i < 11; i++){
+        context.font = "3px Arial";
+        context.fillStyle = "#000";
+        context.textAlign = "center";
+        if (i !== 5 && i !== 0 && i !== 10){
+            context.fillText(i-5, i*10, 54);
+        }
+        else if (i === 5){ //0
+            continue;
+        }
+        else if (i === 0){ //-5
+            context.fillText(i-5, (i*10)+2, 54); //Para que no quede cortado
+        }
+        else if (i === 10){ //5
+            context.fillText(i-5, (i*10)-2, 54); //Para que no quede cortado
+        }
+    }
+    // Indice de numeros y
+    for (let i = 0; i < 11; i++){
+        context.font = "3px Arial";
+        context.fillStyle = "#000";
+        context.textAlign = "center";
+        if (i !== 5 && i !== 0 && i !== 10){
+            context.fillText(-i+5, 48, i*(10));
+        }
+        else if (i === 5){ //0
+            context.fillText(-i+5, 48, i*(10)+4); //Para que no quede cortado
+        }
+        else if (i === 0){ //-5
+            context.fillText(-i+5, 48, i*(10)+3); //Para que no quede cortado
+        }
+        else if (i === 10){ //5
+            context.fillText(-i+5, 48, i*(10)-1); //Para que no quede cortado
+        }
+    }    
+    //Eje x
+    context.beginPath();
+    context.moveTo(0, 50);
+    context.lineTo(100, 50);
+    context.strokeStyle = "#000";
+    context.lineWidth = 0.5;
+    context.stroke();
+    
+    //Eje y
+    context.beginPath();
+    context.moveTo(50, 0);
+    context.lineTo(50, 100);
+    context.strokeStyle = "#000";
+    context.lineWidth = 0.5;
+    context.stroke();
+    
+    //Parabola
+    context.beginPath();
+    for (let i = (-10000); i < 10000; i++) {
+        let coordenadaX = (i-1)/1000;
+        let coordenadaY = aEcuacionAlgebraica * (coordenadaX ** 2) + bEcuacionAlgebraica * coordenadaX + cEcuacionAlgebraica;
+        context.strokeStyle = "#a81c1f";
+        context.lineWidth = 0.6;
+        context.lineTo((coordenadaX*10)+50, (-coordenadaY*10)+50);
+        context.moveTo((coordenadaX*10)+50, (-coordenadaY*10)+50);
+    }
+    context.stroke();
 }

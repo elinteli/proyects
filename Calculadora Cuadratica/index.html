@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Cuadratica</title>
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
@@ -50,8 +51,6 @@
             </div>
         </div>
     </div>
-    <br>
-    <br>
     <div id="funcionContenedor" class="contenedor">
         <input id="inputFuncion" class="input" type="text" placeholder="Escriba una expresión algebraica"><br>
         <div id="datosFuncion">
@@ -82,6 +81,9 @@
                 <i>x</i><sub>1</sub>= <span id="resultadoX1"></span>
                 <br>
                 <i>x</i><sub>2</sub> = <span id="resultadoX2"></span>
+            </div>
+            <div class="contenedor__funcion-informacion">
+                <canvas id="graficaCanvas" width="800" height="800"></canvas>
             </div>
         </div>
     </div>

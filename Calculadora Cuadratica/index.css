@@ -143,6 +143,12 @@ sup,sub{
     user-select: none; 
     font-size: 80%;
 }
+#graficaCanvas {
+    border: 1px solid black;
+    width: 400px;
+    height: 400px;
+    margin-top: 10px;
+}
 @media screen and (max-width: 540px){
     .nav {
         width: 90vw;
@@ -153,6 +159,10 @@ sup,sub{
     }
     .contenedor {
         width: calc(90vw - 60px);
+    }
+    #graficaCanvas {
+        width: calc(90vw - 100px);
+        height: calc(90vw - 100px);
     }
     .contenedor__datos {
         display: flex;
