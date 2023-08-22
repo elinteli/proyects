@@ -4,6 +4,9 @@
     font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: #222;
 }
+span {
+    font-family: "Times New Roman",Times,serif;
+}
 body, html {
     background-color: #e8e8e8;
     display: flex;
@@ -22,7 +25,6 @@ body, html {
     overflow: hidden;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
-    box-shadow: 4px 4px #323232,0px 4px #323232;
     border-bottom: none;
 }
 .nav__boton {
@@ -63,16 +65,24 @@ body, html {
     color: #fff;
 }
 .contenedor {
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
     display: inline-block;
     width: 440px;
     font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 18px;
     background-color: #e8e8e8;
     border: 2px solid #323232;
-    box-shadow: 4px 4px #323232,4px 0px #323232;
     padding: 10px 30px;
+}
+.boton {
+    padding: 7px;
+    border-radius: 12px;
+    border: 2px solid #323232;
+    display: inline-block;
+    background-color: #33415577;
+    user-select: none;
+    font-size: 15px;
 }
 .input {
     padding: 12px;
@@ -83,20 +93,26 @@ body, html {
     margin-top: 10px;
     margin-bottom: 30px;
     margin-left: 0;
-    box-shadow: 4px 4px #323232;
+    font-family: "Times New Roman",Times,serif;
+}
+.input:valid {
+    border-color: #323232 !important;
+}
+.input::placeholder, .input-chico::placeholder {
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
 }
 .input-chico{
     outline: none;
-    box-shadow: 4px 4px #323232;
-    border: 1.5px solid #aaa;
+    border: 1.5px #aaa;
     width: 60px;
-    border-radius: 6px;
+    border-radius: 0px;
     padding: 0;
     padding-left: 10px;
     font-family: "Times New Roman",Times,serif;
     margin: 0 3px;
     background-color: #fff;
-    box-shadow: none;
+    border-bottom-style: solid;
 }
 .input:focus {
     border-color: #334155;
@@ -110,16 +126,18 @@ input[type=number]::-webkit-outer-spin-button {
 input[type=number] { 
     appearance:textfield; 
 }
-.contenedor__ecuacion, .contenedor__abc, .contenedor__soluciones, .contenedor__funcion-informacion {
+.contenedor__ecuacion, .contenedor__abc, .contenedor__soluciones, .contenedor__funcion-informacion, .contenedor__puntos {
     padding: 8px 15px;
-    border-radius: 12px;
-    font-family: "Times New Roman",Times,serif;
+    border-radius: 6px;
     font-size: 20px;
     display: inline-block;
     margin: 5px;
     margin-left: 0;
     background-color: #fff;
     border: 1.5px solid #aaa;
+}
+.contenedor__puntos {
+    border-color: #222;
 }
 .contenedor__datos {
     display: flex;
