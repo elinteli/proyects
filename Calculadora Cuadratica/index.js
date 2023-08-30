@@ -173,8 +173,7 @@ document.getElementById("botonSiguienteEcuacion").addEventListener('click', func
         encontrarABC(inputEcuacion.value);
         
         //Mostrar la Ecuacion en el div
-        divMostrarEcuacion.innerHTML = aEcuacionAlgebraica.toString() +"x^2 + "+ bEcuacionAlgebraica.toString() +"x + "+ cEcuacionAlgebraica.toString();
-        divMostrarEcuacion.innerHTML = divMostrarEcuacion.innerHTML.replace(/1x/g,"x").replace("x^2",`x²`).replace(/0x² \+/g,'').replace(/\+ 0x/g,"").replace(/- 0x/g,"").replace(/0x \+/g,"").replace(/\+ 0/g,"").replace(/\+ -/g,"- ").replace(/x/g,`<i>x</i>`); // cambio cosas esteticas como no mostrar "0x", "1x", o "+ -"
+        divMostrarEcuacion.innerHTML = simplificarEcuacion(aEcuacionAlgebraica.toString() +"x² + "+ bEcuacionAlgebraica.toString() +"x + "+ cEcuacionAlgebraica.toString()).replace(/x/g,"<i>x</i>");
         
         //Mostrar A, B y C
         spanAEcuacion.innerHTML = aEcuacionAlgebraica.toString();
@@ -197,8 +196,7 @@ document.getElementById("botonSiguienteEcuacion").addEventListener('click', func
         encontrarABC(inputFuncion.value);
         
         //Mostrar la Funcion en el div
-        spanEcuacionFuncion.innerHTML = aEcuacionAlgebraica +"x^2 + "+ bEcuacionAlgebraica +"x + "+ cEcuacionAlgebraica;
-        spanEcuacionFuncion.innerHTML = spanEcuacionFuncion.innerHTML.replace(/1x/g,"x").replace("x^2",`x²`).replace(/0x² \+/g,'').replace(/\+ 0x/g,"").replace(/- 0x/g,"").replace(/0x \+/g,"").replace(/\+ 0/g,"").replace(/\+ -/g,"- ").replace(/x/g,`<i>x</i>`); // cambio cosas esteticas como no mostrar "0x", "1x", o "+ -"
+        spanEcuacionFuncion.innerHTML = simplificarEcuacion(aEcuacionAlgebraica +"x² + "+ bEcuacionAlgebraica +"x + "+ cEcuacionAlgebraica).replace(/x/g,"<i>x</i>");
         divMostrarEcuacionIgualdadImagen.innerHTML = spanEcuacionFuncion.innerHTML;
 
         // Encontrar las raices usando bhaskara
@@ -234,7 +232,7 @@ function encontrarABC(ecuacion){
     bEcuacionAlgebraica = 0;
     cEcuacionAlgebraica = 0;
     ecuacionAlgebraica = ecuacion;
-    ecuacionAlgebraica = ecuacionAlgebraica.replace(/X/g,"x").replace("x2","x^2").replace("x²","x^2");
+    ecuacionAlgebraica = ecuacionAlgebraica.replace(/X/g,"x").replace("x2","x²").replace("x^2","x²");
     valoresABCEcuacionAlgebraica = ecuacionAlgebraica;
     valoresABCEcuacionAlgebraica = valoresABCEcuacionAlgebraica.replace(/ /g, "").replace(/--/g, "+").replace(/-/g, "+-").split('+'); // saco los espacios, y separo en terminos creando un array
     valoresABCEcuacionAlgebraica = valoresABCEcuacionAlgebraica.filter(function(arrayElement) { //Recorro el array porque si hay alguno vacio
@@ -242,14 +240,14 @@ function encontrarABC(ecuacion){
     });
 
     for (let i = 0; i < valoresABCEcuacionAlgebraica.length; i++) { //recorro los array elements de valoresABCEcuacionAlgebraica
-        if (valoresABCEcuacionAlgebraica[i].includes("x^2")) { // a
-            aEcuacionAlgebraica = valoresABCEcuacionAlgebraica[i].replace("x^2", "");
+        if (valoresABCEcuacionAlgebraica[i].includes("x²")) { // a
+            aEcuacionAlgebraica = valoresABCEcuacionAlgebraica[i].replace("x²", "");
                 if (aEcuacionAlgebraica === "" || aEcuacionAlgebraica === "-"){ //si luego de sacar la x^2, el numero me queda como "" o "-" le sumamos 1 porque el original era "-x^2" o "x^2" que es lo mismo que "-1x^2" y "1x^2"
                     aEcuacionAlgebraica += "1"; //Concatenamos en vez de poner un = porque queremos que si era 1 negativo originalmente siga siendolo
                 }
             aEcuacionAlgebraica = new Decimal(aEcuacionAlgebraica);
         }
-        if (valoresABCEcuacionAlgebraica[i].includes("x") && !(valoresABCEcuacionAlgebraica[i].includes("x^2"))) { //b
+        if (valoresABCEcuacionAlgebraica[i].includes("x") && !(valoresABCEcuacionAlgebraica[i].includes("x²"))) { //b
             bEcuacionAlgebraica = valoresABCEcuacionAlgebraica[i].replace("x", "");
                 if (bEcuacionAlgebraica === "" || bEcuacionAlgebraica === "-"){ //si luego de sacar la x, el numero me queda como "" o "-" le sumamos 1 porque el original era "-x" o "x" que es lo mismo que "-1x" y "1x"
                     bEcuacionAlgebraica += "1"; //Concatenamos en vez de poner un = porque queremos que si era 1 negativo originalmente siga siendolo
@@ -341,8 +339,7 @@ function calcularFuncion() {
     calcularBFuncion();
     calcularCFuncion();
     contenedorFuncionMetodoReduccion.style.display = "inline-block";
-    mostrarFuncionMetodoReduccion.innerHTML = ((aDeLaEcuacion.toString())+"x² + "+(bDeLaEcuacion.toString())+"x + "+(cDeLaEcuacion.toString()));
-    mostrarFuncionMetodoReduccion.innerHTML = mostrarFuncionMetodoReduccion.innerHTML.replace(/1x/g,"x").replace("x^2",`x²`).replace(/0x² \+/g,'').replace(/\+ 0x/g,"").replace(/- 0x/g,"").replace(/0x \+/g,"").replace(/\+ 0/g,"").replace(/\+ -/g,"- ").replace(/x/g,`<i>x</i>`);
+    mostrarFuncionMetodoReduccion.innerHTML = simplificarEcuacion((aDeLaEcuacion.toString())+"x² + "+(bDeLaEcuacion.toString())+"x + "+(cDeLaEcuacion.toString())).replace(/x/g,"<i>x</i>");
 };
 
 function calcularAFuncion() {
@@ -479,3 +476,28 @@ function calcularCFuncion() {
         cDeLaEcuacion = ((sumaHI.igualdad).plus(sumaHJ.igualdad)).dividedBy((sumaHI.c).plus(sumaHJ.c));
     }
 }
+
+function simplificarEcuacion(ecuacionDesordenada) {
+    // Remover espacios en blanco y asegurarse de que los signos de suma/diferencia estén espaciados
+    ecuacionDesordenada = ecuacionDesordenada.replace(/\s+/g, '');
+    
+    // Asegurarse de que no haya dobles signos
+    ecuacionDesordenada = ecuacionDesordenada.replace(/\+-/g, '-');
+
+    // Reemplazar "1x" por "x"
+    ecuacionDesordenada = ecuacionDesordenada.replace(/(?<![0-9])1x/g, 'x');
+    
+    // Eliminar términos con coeficiente 0x²
+    ecuacionDesordenada = ecuacionDesordenada.replace(/(?<![0-9])0x²/g, '');
+    
+    // Eliminar términos con coeficiente 0x
+    ecuacionDesordenada = ecuacionDesordenada.replace(/\+(?<![0-9])0x/g, '').replace(/-(?<![0-9])0x/g, '');
+
+    // Eliminar términos "+ 0" y "- 0"
+    ecuacionDesordenada = ecuacionDesordenada.replace(/\+0/g, '').replace(/-0/g, '');
+    
+    // Remover espacios en blanco y asegurarse de que los signos de suma/diferencia estén espaciados
+    ecuacionDesordenada = ecuacionDesordenada.replace(/\s+/g, '').replace(/x²\+/g, "x² + ").replace(/x²-/g, "x² - ").replace(/x\+/g, "x + ").replace(/x\-/g, "x - ");
+
+    return ecuacionDesordenada;
+  }

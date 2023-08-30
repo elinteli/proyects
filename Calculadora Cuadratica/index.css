@@ -23,8 +23,8 @@ body, html {
     border: 2px solid #323232;
     border-radius: 0px;
     overflow: hidden;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
     border-bottom: none;
 }
 .nav__boton {
@@ -76,13 +76,13 @@ body, html {
     padding: 10px 30px;
 }
 .boton {
-    padding: 7px;
-    border-radius: 12px;
-    border: 2px solid #323232;
+    padding: 12px;
     display: inline-block;
     background-color: #33415577;
     user-select: none;
     font-size: 15px;
+    margin-bottom: 10px;
+    border-radius: 6px;
 }
 .input {
     padding: 12px;
@@ -91,7 +91,7 @@ body, html {
     outline: none;
     width: fit-content;
     margin-top: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     margin-left: 0;
     font-family: "Times New Roman",Times,serif;
 }
