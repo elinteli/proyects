@@ -1,0 +1,146 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+body{
+    background: #5b4770;
+    background: radial-gradient(circle, #5b4770 0%, #262951 100%);
+}
+
+.estrellas{
+    background-image: url(../img/estrellas.png);
+    background-size: 600px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.bola{
+    background: #6672cc;
+    background: radial-gradient(circle, #6672cc 0%, #0c1136 100%);
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    margin: auto;
+    text-align: center;
+    text-decoration: none;
+}
+
+#texto-bola::after{
+    content: attr(mensaje);
+    color: black;
+    position: relative;
+    top: 40px;
+}
+
+#texto-bola{
+    display: inline-block;
+    font-size: 70px;
+    font-weight: bold;
+    width: 300px;
+    height: 300px;
+    font-weight: bold;
+}
+
+.triangulo{
+    position: absolute;
+    transform: translate(25px, 20px);
+    text-align: center;
+    margin: auto;
+    width: 300px;
+    height: 300px;
+    background-image: url(../img/triangulo.png);
+    background-size: 250px;
+    background-repeat: no-repeat;
+}
+
+.contInput{
+    position: absolute;
+    bottom: 50px;
+    margin: 0px;
+    margin-left: calc(50vw - calc(420px / 2));
+}
+
+.input{
+    width: 400px;
+    font-size: 23px;
+    padding: 5px 0px;
+    padding-left: 20px;
+    border-radius: 10px;
+    border: none;
+}
+
+.label{
+    color: #ccc;
+    background-color: #463b64;
+    position: absolute;
+    margin: 5px;
+    padding: 8px;
+    user-select: none; 
+}
+
+@media screen and (max-width: 1000px) {
+    .input{
+        width: 320px;
+        font-size: 30px;
+        padding: 10px 0px;
+        padding-left: 40px;
+    }
+    .contInput{
+        margin-left: calc(50vw - calc(360px / 2));
+        bottom: 100px;
+    }
+    .label{
+        font-size: 18px;
+    }
+    .bola{
+        position: relative;
+        top: -150px;
+    }
+}
+
+@media screen and (max-height: 630px){
+    .contInput{
+        bottom: 80px;
+    }
+    .input{
+        font-size: 23px;
+        padding: 5px 0px;
+        padding-left: 20px;
+    }
+    .bola{
+        position: relative;
+        top: -50px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .input{
+        width: 240px;
+        padding: 10px 0px;
+        padding-left: 7px;
+        font-size: 23px;
+    }
+    .contInput{
+        margin-left: calc(50vw - calc(247px / 2));
+    }
+    
+    .bola{
+        width: 260px;
+        height: 260px;
+    }
+
+    .triangulo{
+        width: 260px;
+        height: 260px;
+        background-size: 210px;
+        transform: translate(28px, 30px);
+    }
+
+    #texto-bola{
+        width: 260px;
+        height: 260px;
+    }
+}
