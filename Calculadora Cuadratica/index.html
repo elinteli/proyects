@@ -75,12 +75,20 @@
             <div class="contenedor__funcion-informacion">
                 Eje de Simetría: <span id="ejeSimetria"></span>
             </div>
-            <div class="contenedor__funcion-informacion">
-                <i>f</i> (<input id="input-imagen" class="input-chico" type="text">) = <span id="imagen"></span>
+            <div style="display:flex; flex-direction: row;" class="contenedor__funcion-informacion">
+                <div><i>f</i> (<input id="input-imagen" class="input-chico" type="text">) = <span id="imagen"></span></div>
+                <div id="botonEnterImagen" class="boton-enter">↩</div>
             </div>
-            <div class="contenedor__funcion-informacion"><div id="mostrarEcuacionImagen">
-                a<i>x</i>² + b<i>x</i> + c</div> = <input id="input-preimagen" class="input-chico" type="text">
-                <br> 
+            <div class="contenedor__funcion-informacion">
+                <div style="display:flex; flex-direction: row;">
+                    <div>
+                        <div id="mostrarEcuacionImagen">
+                            a<i>x</i>² + b<i>x</i> + c
+                        </div> 
+                        = <input id="input-preimagen" class="input-chico" type="text">
+                    </div>
+                    <div id="botonEnterPreimagen" class="boton-enter">↩</div>
+                </div>
                 <i>x</i><sub>1</sub>= <span id="resultadoX1"></span>
                 <br>
                 <i>x</i><sub>2</sub> = <span id="resultadoX2"></span>

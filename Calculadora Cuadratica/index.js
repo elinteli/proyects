@@ -61,6 +61,11 @@ let aDeLaEcuacion;
 let bDeLaEcuacion;
 let cDeLaEcuacion;
 
+
+contenedorEcuacion.style = "none";
+contenedorFuncion.style.display = "none";
+contenedorPuntosAFuncion.style.display = "none";
+
 window.addEventListener("load", function () { //Al iniciar
     datosEcuacion.style.display = "none";
     datosFuncionDiv.style.display = "none";
@@ -211,16 +216,12 @@ document.getElementById("botonSiguienteEcuacion").addEventListener('click', func
     }
 });
 
-inputImagen.addEventListener('keypress', function(event) {
-    if (event.keyCode === 13) {
-        imagenYPreimagen("imagen");
-    }
+document.getElementById("botonEnterImagen").addEventListener('click', function() {
+    imagenYPreimagen("imagen");
 });
   
-inputPreimagen.addEventListener('keypress', function(event) {
-    if (event.keyCode === 13) {
-        imagenYPreimagen("preimagen");
-    }
+document.getElementById("botonEnterPreimagen").addEventListener('click', function() {
+    imagenYPreimagen("preimagen");
 });
 
 document.getElementById("botonSiguienteMetodoReduccion").addEventListener('click', function() {

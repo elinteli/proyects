@@ -84,9 +84,21 @@ body, html {
     margin-bottom: 10px;
     border-radius: 6px;
 }
+.boton:active, .boton-enter:active {
+    transform: translateY(2px);
+}
+.boton-enter {
+    padding: 0 12px;
+    display: inline-block;
+    background-color: #33415577;
+    user-select: none;
+    font-size: 18px;
+    border-radius: 6px;
+    margin-left:auto;
+}
 .input {
     padding: 12px;
-    border-radius: 12px;
+    border-radius: 6px;
     border: 2px solid #323232;
     outline: none;
     width: fit-content;
