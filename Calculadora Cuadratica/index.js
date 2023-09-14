@@ -317,9 +317,21 @@ function calcularFuncion() {
     bEcuacionMetRed = (sumaDeLosPuntos.igualdad).dividedBy(sumaDeLosPuntos.b); //paso el coeficiente de b al otro lado dividiendo
 
     //Calcular C
-    sumaDeLosPuntos = sumarPuntos(sumarPuntos(puntoH,puntoJ,"a"),sumarPuntos(puntoH,puntoI,"a"),"b"); //a: 0, b: 0, c: num, igualdad: num
-    cEcuacionMetRed = (sumaDeLosPuntos.igualdad).dividedBy(sumaDeLosPuntos.c); //paso el coeficiente de c al otro lado dividiendo
-
+    if (!(new Decimal(xPuntoH.value) == '0' || new Decimal(xPuntoI.value) == '0' || new Decimal(xPuntoJ.value) == '0')) { //Si ningun x de los puntos = 0
+        sumaDeLosPuntos = sumarPuntos(sumarPuntos(puntoH,puntoJ,"a"),sumarPuntos(puntoH,puntoI,"a"),"b"); //a: 0, b: 0, c: num, igualdad: num
+        cEcuacionMetRed = (sumaDeLosPuntos.igualdad).dividedBy(sumaDeLosPuntos.c); //paso el coeficiente de c al otro lado dividiendo
+    }
+    else {
+        if (new Decimal(xPuntoH.value) == '0') {
+            cEcuacionMetRed = yPuntoH.value;
+        }
+        else if (new Decimal(xPuntoI.value) == '0') {
+            cEcuacionMetRed = yPuntoI.value;
+        }
+        else if (new Decimal(xPuntoJ.value) == '0') {
+            cEcuacionMetRed = yPuntoJ.value;
+        }
+    }
     contenedorFuncionMetRed.style.display = "inline-block";
     mostrarFuncionMetRed.innerHTML = simplificarEcuacion((aEcuacionMetRed.toString())+"x² + "+(bEcuacionMetRed.toString())+"x + "+(cEcuacionMetRed.toString())).replace(/x/g,"<i>x</i>");
 };
