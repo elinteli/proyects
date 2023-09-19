@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Función Cuadratica</title>
+    <script src="decimal.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+  <body>
+    <article>
+      <section class="funcion">
+        <input class="input" type="text" id="funcionInput" placeholder="Escribe una función cuadrática">
+        <br>
+        <!-- SELECT DATOS -->
+        <div class="contenedor-select">
+            <label class="select" for="selectDatos">
+                <select id="selectDatos" required>
+                    <option value="" disabled selected>Dato</option>
+                    <option value="a">Término cuadrático</option>
+                    <option value="b">Término lineal</option>
+                    <option value="c">Término independiente</option>
+                    <option value="raices">Raices</option>
+                    <option value="vertice">Vértice</option>
+                    <option value="concavidad">Concavidad</option>
+                    <option value="ordenadaOrigen">Ordenada en el Origen</option>
+                    <option value="ejeSimetria">Eje de simetría</option>
+                </select>
+                <svg>
+                    <use xlink:href="#select-arrow-down"></use>
+                </svg>
+          </label>
+          <span class="span">:</span>
+          <span class="span" id="dato">valor</span>
+        </div>
+        <br>
+        <!-- SELECT IMAGEN/PREIMAGEN -->
+        <div class="contenedor-select">
+            <label class="select" for="selectImgPreimg">
+                <select id="selectImgPreimg" required>
+                    <option value="imagen" selected>Imagen de</option>
+                    <option value="preimagen">Preimagen de</option>
+                </select>
+                <svg>
+                    <use xlink:href="#select-arrow-down"></use>
+                </svg>
+            </label>
+            <input type="number" id="inputNumImgPreimg" class="input" placeholder="Número">
+            <span class="span">=</span>
+            <span class="span" id="imagenPreimagen">valor</span>
+        </div>
+        <br>
+        <button class="button" id="botonGraficar">GRAFICAR</button>
+        <br>
+        <canvas class="canvas" id="canvasGraficarFuncion"></canvas>
+      </section>
+    </article>
+    <!-- SVG Sprites -->
+    <svg class="sprites">
+        <symbol id="select-arrow-down" viewBox="0 0 10 6">
+            <polyline points="1 1 5 5 9 1"></polyline>
+        </symbol>
+    </svg>
+    <script src="script.js"></script>
+  </body>
+</html>
