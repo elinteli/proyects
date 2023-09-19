@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Encontrar Función</title>
+        <script src="decimal.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"rel="stylesheet">
+        <link rel="stylesheet" href="estilos.css">
+    </head>
+    <body>
+        <article>
+            <section class="metodoReduccion">
+                <div class="contenedor-canvas">
+                    <canvas class="canvas" id="canvasGraficarFuncion"></canvas>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th><span class="span" style="width: 100%;">x</span></th>
+                                <th><span class="span" style="width: 100%;">y</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="number" class="input" placeholder="x" id="xPuntoH"></td>
+                                <td><input type="number" class="input" placeholder="y" id="yPuntoH"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="number" class="input" placeholder="x" id="xPuntoI"></td>
+                                <td><input type="number" class="input" placeholder="y" id="yPuntoI"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="number" class="input" placeholder="x" id="xPuntoJ"></td>
+                                <td><input type="number" class="input" placeholder="y" id="yPuntoJ"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <button class="button" id="botonEncontrarParabola">Encontrar Función</button>
+                <span class="span" id="funcion">f(x) = ax² + bx + c</span>
+            </section>
+        </article>
+        <script src="script.js"></script>
+    </body>
+</html>

@@ -1,0 +1,140 @@
+body {
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif;
+}
+
+/*----------------- SELECT -----------------*/
+  * {
+    box-sizing: border-box;
+  }
+  
+  .select {
+    position: relative;
+    min-width: 200px;
+  }
+  
+  .select svg {
+    position: absolute;
+    right: 12px;
+    top: calc(50% - 3px);
+    width: 10px;
+    height: 6px;
+    stroke-width: 2px;
+    stroke: #9098A9;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+  }
+  
+  .select select {
+    -webkit-appearance: none;
+    padding: 7px 40px 7px 12px;
+    border: 1px solid #E8EAED;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 1px 3px -2px #9098A9;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+  }
+  
+  .select select:focus {
+      outline:none; 
+      border-color:#0077FF; 
+      box-shadow:0px,0px,0px,2px,rgba(0,119,255,0.2);
+  }
+  
+  .select select:hover + svg {
+      stroke:#0077FF; 
+  }
+  
+  .select select[required]:invalid {
+      color:#5A667F; 
+  }
+  
+  .select select option {
+      color:#223254; 
+  }
+  
+  .select select option[value=""][disabled] {
+      display:none; 
+  }
+  
+  .sprites {
+      position:absolute; 
+      width:0; 
+      height:0; 
+      pointer-events:none; 
+      user-select:none; 
+  }
+/*----------------- SELECT -----------------*/
+
+.input {
+    padding: 7px 12px 7px 12px;
+    width: 216px;
+    border: 1px solid #E8EAED;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 1px 3px -2px #9098A9;
+    margin: 5px 0;
+    font-size: 14px;
+    height: 34px;
+}
+.input:focus {
+    outline: none;
+    border-color: #0077FF;
+    box-shadow: none;
+}
+.span {
+    display: inline-block;
+    padding: 7px 12px;
+    border: 1px solid #E8EAED;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 1px 3px -2px #9098A9;
+    font-size: 16px;
+}
+.contenedor-select {
+    display: inline-block;
+    margin: 5px 0;
+}
+.button {
+    display: inline-block;
+    padding: 7px 12px;
+    border: 1px solid #E8EAED;
+    border-radius: 5px;
+    background: #7d9fe5;
+    box-shadow: 0 1px 3px -2px #9098A9;
+    font-size: 16px;
+    margin: 5px 0;
+}
+.button:hover {
+    background: #485d93;
+}
+.button:active {
+    background: #485d93ef;
+}
+.canvas {
+    display: inline-block;
+    border: 1px solid #E8EAED;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px -2px #9098A9;
+    width: 400px;
+    height: 400px;
+    margin: 5px 0;
+}
+
+/* SACAR LOS BOTONES DE INPUT NUMBER*/
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.contenedor-canvas {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+}
