@@ -43,16 +43,12 @@ document.getElementById("canvasGraficarFuncion").addEventListener("click", funct
     puntos[puntoEnfocado][1].dispatchEvent(eventoChange);
 });
 
-//------------- ENCONTRAR PARABOLA -------------//
-document.getElementById("botonEncontrarParabola").addEventListener("click", function() {
-    document.getElementById("funcion").innerHTML = "f(x) = "+calcularFuncion();
-    graficarParabola(aEcuacionMetRed,bEcuacionMetRed,cEcuacionMetRed);
-});
-
 for (let i = 0; i < puntos.length; i++) { //Ej: Punto = H
     for (let j = 0; j < puntos[i].length; j++) { //Ej: j = xPuntoH
         puntos[i][j].addEventListener("change", function() {
             graficarPuntosHIJ();
+            document.getElementById("funcion").innerHTML = "f(x) = "+calcularFuncion();
+            graficarParabola(aEcuacionMetRed,bEcuacionMetRed,cEcuacionMetRed);
         });
         puntos[i][j].addEventListener("focus", function() {
             puntoEnfocado = i;
@@ -65,160 +61,6 @@ function graficarPuntosHIJ() {
     graficarPunto(xPuntoH.value, yPuntoH.value);
     graficarPunto(xPuntoI.value, yPuntoI.value);
     graficarPunto(xPuntoJ.value, yPuntoJ.value);
-}
-
-btnSiguienteFuncion.addEventListener('click', function() { //Cuando se presiona el boton siguiente
-    if (inputFuncion.value != "") { // Si hay algo escrito
-        inputFuncion.style.borderColor = "";
-        datosFuncionDiv.style.display = "flex"; //se muestran los datos
-        encontrarABC(inputFuncion.value);
-        
-        //Mostrar la Funcion en el div
-        spanEcuacionFuncion.innerHTML = simplificarEcuacion(aEcuacionAlgebraica +"x² + "+ bEcuacionAlgebraica +"x + "+ cEcuacionAlgebraica).replace(/x/g,"<i>x</i>");
-        mostrarEcuacionImagen.innerHTML = spanEcuacionFuncion.innerHTML;
-
-        // Encontrar las raices usando bhaskara
-        mostrarRaiz1.innerHTML = bhaskara(new Decimal(aEcuacionAlgebraica), new Decimal(bEcuacionAlgebraica), new Decimal(cEcuacionAlgebraica), new Decimal(1));
-        mostrarRaiz2.innerHTML = bhaskara(new Decimal(aEcuacionAlgebraica), new Decimal(bEcuacionAlgebraica), new Decimal(cEcuacionAlgebraica), new Decimal(-1));
-        if (mostrarRaiz1.innerHTML == 'NaN' || mostrarRaiz2.innerHTML == 'NaN') {
-            mostrarRaiz1.innerHTML = "Error";
-            mostrarRaiz2.innerHTML = "Error";
-        }
-        datosFuncion();
-        if (colorActual < coloresGraficar.length) {
-            colorActual++;
-        }
-        else {
-            colorActual = 0;
-        }
-        document.getElementById("mostrarEcuacionGrafica").innerHTML += `
-        <div style="color: ${coloresGraficar[colorActual]}"><i style="color: ${coloresGraficar[colorActual]}">f</i> (<i>x</i>) = ${spanEcuacionFuncion.innerHTML}</div>`;
-        document.getElementById("mostrarEcuacionGrafica").innerHTML = document.getElementById("mostrarEcuacionGrafica").innerHTML.replace(/\<i\>x\<\/i\>/g,`<i style="color: ${coloresGraficar[colorActual]}">x</i>`);
-        graficarParabola(aEcuacionAlgebraica,bEcuacionAlgebraica,cEcuacionAlgebraica, context, coloresGraficar[colorActual]);
-    }
-    else {
-        inputFuncion.style.borderColor = "rgb(164, 38, 44)";
-        inputFuncion.style.outlineColor = "rgb(164, 38, 44)";
-    }
-});
-
-document.getElementById("botonEnterImagen").addEventListener('click', function() {
-    imagenYPreimagen("imagen");
-});
-  
-document.getElementById("botonEnterPreimagen").addEventListener('click', function() {
-    imagenYPreimagen("preimagen");
-});
-
-btnSiguientePtosAFunc.addEventListener('click', function() {
-    calcularFuncion();
-    canvasFondo(canvasPtosAFunc, contextoPtosAFunc);
-    graficarParabola(aEcuacionMetRed,bEcuacionMetRed,cEcuacionMetRed,contextoPtosAFunc, coloresGraficar[0]);
-    graficarPunto(parseFloat(xPuntoH.value),parseFloat(yPuntoH.value),contextoPtosAFunc);
-    graficarPunto(parseFloat(xPuntoI.value),parseFloat(yPuntoI.value),contextoPtosAFunc);
-    graficarPunto(parseFloat(xPuntoJ.value),parseFloat(yPuntoJ.value),contextoPtosAFunc);
-});
-
-btnPrevisualisarPtosAFunc.addEventListener('click', function() {
-    canvasFondo(canvasPtosAFunc, contextoPtosAFunc);
-    graficarPunto(parseFloat(xPuntoH.value),parseFloat(yPuntoH.value),contextoPtosAFunc);
-    graficarPunto(parseFloat(xPuntoI.value),parseFloat(yPuntoI.value),contextoPtosAFunc);
-    graficarPunto(parseFloat(xPuntoJ.value),parseFloat(yPuntoJ.value),contextoPtosAFunc);
-});
-
-function encontrarABC(ecuacion){
-    aEcuacionAlgebraica = 0;
-    bEcuacionAlgebraica = 0;
-    cEcuacionAlgebraica = 0;
-    ecuacionAlgebraica = ecuacion;
-    ecuacionAlgebraica = ecuacionAlgebraica.replace(/X/g,"x").replace("x2","x²").replace("x^2","x²");
-    valoresABCEcuacionAlgebraica = ecuacionAlgebraica;
-    valoresABCEcuacionAlgebraica = valoresABCEcuacionAlgebraica.replace(/ /g, "").replace(/--/g, "+").replace(/-/g, "+-").split('+'); // saco los espacios, y separo en terminos creando un array
-    valoresABCEcuacionAlgebraica = valoresABCEcuacionAlgebraica.filter(function(arrayElement) { //Recorro el array porque si hay alguno vacio
-        return arrayElement !== ""; // Devuelvo los que no estan vacios
-    });
-
-    for (let i = 0; i < valoresABCEcuacionAlgebraica.length; i++) { //recorro los array elements de valoresABCEcuacionAlgebraica
-        if (valoresABCEcuacionAlgebraica[i].includes("x²")) { // a
-            aEcuacionAlgebraica = valoresABCEcuacionAlgebraica[i].replace("x²", "");
-                if (aEcuacionAlgebraica === "" || aEcuacionAlgebraica === "-"){ //si luego de sacar la x^2, el numero me queda como "" o "-" le sumamos 1 porque el original era "-x^2" o "x^2" que es lo mismo que "-1x^2" y "1x^2"
-                    aEcuacionAlgebraica += "1"; //Concatenamos en vez de poner un = porque queremos que si era 1 negativo originalmente siga siendolo
-                }
-            aEcuacionAlgebraica = new Decimal(aEcuacionAlgebraica);
-        }
-        if (valoresABCEcuacionAlgebraica[i].includes("x") && !(valoresABCEcuacionAlgebraica[i].includes("x²"))) { //b
-            bEcuacionAlgebraica = valoresABCEcuacionAlgebraica[i].replace("x", "");
-                if (bEcuacionAlgebraica === "" || bEcuacionAlgebraica === "-"){ //si luego de sacar la x, el numero me queda como "" o "-" le sumamos 1 porque el original era "-x" o "x" que es lo mismo que "-1x" y "1x"
-                    bEcuacionAlgebraica += "1"; //Concatenamos en vez de poner un = porque queremos que si era 1 negativo originalmente siga siendolo
-                }
-            bEcuacionAlgebraica = new Decimal(bEcuacionAlgebraica);
-        }
-        if (!(valoresABCEcuacionAlgebraica[i].includes("x"))) { //c (si NO tiene x)
-            cEcuacionAlgebraica = valoresABCEcuacionAlgebraica[i];
-            cEcuacionAlgebraica = new Decimal(cEcuacionAlgebraica);
-        }
-    }
-    return [aEcuacionAlgebraica, bEcuacionAlgebraica, cEcuacionAlgebraica];
-}
-
-function bhaskara(a,b,c,signo) {
-    let delta = (b.toPower(new Decimal(2))).minus((new Decimal(4)).times(a).times(c));
-    return ((b.times(new Decimal(-1))).plus(signo.times(delta.sqrt()))).dividedBy((new Decimal(2)).times(a));
-    //si "signo" es -1 equivale a "- Math.sqrt(delta)" y si es 1 equivale a "+ Math.sqrt(delta)"
-}
-
-function datosFuncion(dato) {
-    switch (dato) {
-        case "raices":
-            let raiz1 = bhaskara(new Decimal(aEcuacionAlgebraica), new Decimal(bEcuacionAlgebraica), new Decimal(cEcuacionAlgebraica), new Decimal(1));
-            let raiz2 = bhaskara(new Decimal(aEcuacionAlgebraica), new Decimal(bEcuacionAlgebraica), new Decimal(cEcuacionAlgebraica), new Decimal(-1));
-            if (raiz1.toString() == 'NaN' || raiz2.toString() == 'NaN') {
-                raiz1 = "Error";
-                raiz2 = "Error";
-            }
-            return `${raiz1} y ${raiz2}`;
-        case "vertice":
-            let coordXVertice = ((new Decimal(parseFloat(bEcuacionAlgebraica))).times(new Decimal(-1))).dividedBy((new Decimal(2)).times(new Decimal(parseFloat(aEcuacionAlgebraica)))); //opuesto de b sobre 2a
-            let coordYVertice = (new Decimal(parseFloat(aEcuacionAlgebraica))).times((coordXVertice).toPower(new Decimal(2))).plus((new Decimal(parseFloat(bEcuacionAlgebraica))).times(coordXVertice)).plus(new Decimal(parseFloat(cEcuacionAlgebraica))); //imagen de la coordenada x del vertice
-            return `( ${coordXVertice} ; ${coordYVertice} )`
-        case "concavidad":
-            if (aEcuacionAlgebraica > 0) {
-                return "Positiva";
-            }
-            else {
-                return "Negativa";
-            }
-        case "ejeSimetria":
-            return ((new Decimal(parseFloat(bEcuacionAlgebraica))).times(new Decimal(-1))).dividedBy((new Decimal(2)).times(new Decimal(parseFloat(aEcuacionAlgebraica)))).toString(); //opuesto de b sobre 2a
-        case "ordenadaOrigen":
-            return cEcuacionAlgebraica.toString();
-        case "a":
-            return aEcuacionAlgebraica.toString();
-        case "b":
-            return bEcuacionAlgebraica.toString();
-        case "c":
-            return cEcuacionAlgebraica.toString();
-    }
-}
-
-function imagenYPreimagen(imagenPreimagen, valor) {
-    //IMAGEN
-    if (imagenPreimagen === "imagen"){
-        let imagen = (new Decimal(parseFloat(aEcuacionAlgebraica))).times((new Decimal(parseFloat(valor))).toPower(2)).plus((new Decimal(parseFloat(bEcuacionAlgebraica))).times(new Decimal(parseFloat(valor)))).plus(new Decimal(parseFloat(cEcuacionAlgebraica))).toString();
-        if (imagen.toString() == 'NaN') {
-            imagen = "Error";
-        }
-        return imagen;
-    }
-
-    //IMAGEN
-    let solucionPreimagen1 = bhaskara(new Decimal(parseFloat(aEcuacionAlgebraica)),new Decimal(parseFloat(bEcuacionAlgebraica)),((new Decimal(parseFloat(cEcuacionAlgebraica))).plus((new Decimal(parseFloat(valor))).times(new Decimal(-1)))), new Decimal(1)); //El numero del lado de la igualdad pasa lo cambiamos de lado como su opuesto y sumamos con semejantes(c)
-    let solucionPreimagen2 = bhaskara(new Decimal(parseFloat(aEcuacionAlgebraica)),new Decimal(parseFloat(bEcuacionAlgebraica)),((new Decimal(parseFloat(cEcuacionAlgebraica))).plus((new Decimal(parseFloat(valor))).times(new Decimal(-1)))), new Decimal(-1));
-    if (solucionPreimagen1.toString() == 'NaN' || solucionPreimagen2.toString() == 'NaN') {
-        solucionPreimagen1 = "Error";
-        solucionPreimagen2 = "Error";
-    }
-    return `${solucionPreimagen1} y ${solucionPreimagen2}`;
 }
 
 function obtenerPunto(x, y) {
