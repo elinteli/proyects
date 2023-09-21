@@ -138,11 +138,13 @@ function simplificarEcuacion(ecuacionDesordenada) {
     // Asegurarse de que no haya dobles signos
     ecuacionDesordenada = ecuacionDesordenada.replace(/\+-/g, '-');
     // Reemplazar "1x" por "x"
-    ecuacionDesordenada = ecuacionDesordenada.replace(/(?<![0-9])1x/g, 'x');
+    ecuacionDesordenada = ecuacionDesordenada.replace(/(?<![0-9\.])1x/g, 'x') //remplaza todos los 1x que NO tiene antes un numero o un punto
     // Eliminar términos con coeficiente 0x²
-    ecuacionDesordenada = ecuacionDesordenada.replace(/(?<![0-9])0x²/g, '');
+    ecuacionDesordenada = ecuacionDesordenada.replace(/(?<![0-9\.])0x²/g, '');
     // Eliminar términos con coeficiente 0x
-    ecuacionDesordenada = ecuacionDesordenada.replace(/\+(?<![0-9])0x/g, '').replace(/-(?<![0-9])0x/g, '');
+    ecuacionDesordenada = ecuacionDesordenada.replace(/\+(?<![0-9\.])0x/g, '').replace(/-(?<![0-9\.])0x/g, '');
+    // Eliminar +/- 0
+    ecuacionDesordenada = ecuacionDesordenada.replace(/\+(?<![0-9\.])0(?![0-9\.])/g, '').replace(/-(?<![0-9])0(?![0-9\.])/g, ''); //Remplaza los +/- 0, siempre y cuando no tenga un numero o punto antes o despues
     // Remover espacios en blanco y asegurarse de que los signos de suma/diferencia estén espaciados
     ecuacionDesordenada = ecuacionDesordenada.replace(/\s+/g, '').replace(/x²\+/g, "x² + ").replace(/x²-/g, "x² - ").replace(/x\+/g, "x + ").replace(/x\-/g, "x - ");
     return ecuacionDesordenada;
