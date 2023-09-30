@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitagoras</title>
+    <link rel="stylesheet" href="index.css">
+    <meta name="author" content="Eli Fainerman">
+    <meta name="robots" content="noindex">
+</head>
+<body>
+    <div class="contenedor-canvas">
+        <canvas id="canvasGraficar" class="canvas"></canvas>
+        <div>
+            <div class="input-group">
+                <label for="a" class="label-input">A</label>
+                <input type="number" placeholder="Cateto A" id="a" step="0.10" min="0.5" class="input">
+            </div>
+            <div class="input-group">
+                <label for="b" class="label-input">B</label>
+                <input type="number" placeholder="Cateto B" id="b" step="0.10" min="0.5" class="input">
+            </div>
+            <div class="input-group">
+                <label for="c" class="label-input">C</label>
+                <input type="number" placeholder="Hipotenusa" id="c" step="0.10" min="0.7" class="input"><br><br>
+            </div>
+            <button class="button" id="botonCalcular">CALCULAR</button>
+        </div>
+    </div>
+    <br>
+    <span class="span" id="funcion">hipotenusa² = cateto² + cateto²</span>
+    <script src="index.js"></script>
+</body>
+</html>
