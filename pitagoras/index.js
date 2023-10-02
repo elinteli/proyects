@@ -25,7 +25,7 @@ function mostrarNuevosValores() {
     if (inputB.value == '') valorQueCambia = 'b';
     if (inputHipotenusa.value == '') valorQueCambia = 'c';
     if (cantidadInputsVacios == 1) {
-        let res = pitagoras(inputA.value,inputB.value,inputHipotenusa.value,valorQueCambia);
+        let res = pitagoras(Number(inputA.value),Number(inputB.value),Number(inputHipotenusa.value),valorQueCambia);
         inputA.value = res.a;
         inputB.value = res.b;
         inputHipotenusa.value = res.c;
@@ -72,6 +72,12 @@ function pitagoras(a,b,c,valorAjustar) {
     catetoA = parseFloat(catetoA);//.toFixed(2);
     catetoB = parseFloat(catetoB);//.toFixed(2);
     hipotenusa = parseFloat(hipotenusa);//.toFixed(2);
+    console.log({
+        a: catetoA,
+        b: catetoB,
+        c: hipotenusa
+    });
+    console.log(valorAjustar);
     return {
         a: catetoA,
         b: catetoB,
