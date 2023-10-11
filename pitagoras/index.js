@@ -32,7 +32,7 @@ function mostrarNuevosValores() {
         graficarTriangulo(res.a,res.b,res.c);
     }
     else {
-        alert("Tiene que haber dos campos de texto rellenados y uno vacio.");
+        alert("Tiene que haber dos campos de texto rellenados y uno vacío.");
     }
 }
 
@@ -43,41 +43,19 @@ function pitagoras(a,b,c,valorAjustar) {
     if (valorAjustar == 'c') {
         hipotenusa = Math.sqrt((catetoA ** 2) + (catetoB ** 2));
     } else if (valorAjustar == 'a') { 
-        if (catetoA < 15){
-            catetoA = Math.sqrt((hipotenusa ** 2) - (catetoB ** 2));
-        }
-        else {
-            catetoB = Math.sqrt((hipotenusa ** 2) - (catetoA ** 2));
-        }
-    }
-    else { // valorAjustar == 'b'
-        if (catetoB < 15){
-            catetoB = Math.sqrt((hipotenusa ** 2) - (catetoA ** 2));
-        }
-        else {
-            catetoA = Math.sqrt((hipotenusa ** 2) - (catetoB ** 2));
-        }
-    }
-
-    if (catetoA >= hipotenusa && catetoB >= hipotenusa) {
-        catetoA = hipotenusa - 0.1;
-        catetoB = Math.sqrt((hipotenusa ** 2) - (catetoA ** 2));
-    } else if (catetoA >= hipotenusa) {
-        catetoA = hipotenusa - 0.1;
-        catetoB = Math.sqrt((hipotenusa ** 2) - (catetoA ** 2));
-    } else if (catetoB >= hipotenusa) {
-        catetoB = hipotenusa - 0.1;
         catetoA = Math.sqrt((hipotenusa ** 2) - (catetoB ** 2));
     }
-    catetoA = parseFloat(catetoA);//.toFixed(2);
-    catetoB = parseFloat(catetoB);//.toFixed(2);
-    hipotenusa = parseFloat(hipotenusa);//.toFixed(2);
-    console.log({
-        a: catetoA,
-        b: catetoB,
-        c: hipotenusa
-    });
-    console.log(valorAjustar);
+    else { // valorAjustar == 'b'
+        catetoB = Math.sqrt((hipotenusa ** 2) - (catetoA ** 2));
+    }
+
+    if (catetoA >= hipotenusa || catetoB >= hipotenusa) {
+        alert("La longitud de cualquier cateto debe ser siempre inferior a la longitud de la hipotenusa.");
+        return;
+    }
+    catetoA = parseFloat(catetoA);
+    catetoB = parseFloat(catetoB);
+    hipotenusa = parseFloat(hipotenusa);
     return {
         a: catetoA,
         b: catetoB,

@@ -154,3 +154,13 @@ body {
     align-items: flex-start;
     gap: 10px;
 }
+
+@media (orientation: portrait) {
+    .contenedor-canvas {
+        flex-direction: column;
+    }
+    .canvas {
+        width: 90vw;
+        height: 90vw;
+    }
+}
