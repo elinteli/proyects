@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trigonometría</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <article style="display: flex;gap: 10px;">
+        <section>
+            <img class="canvas" src="https://www.definicionabc.com/contenido/trigonometria-estructura.jpg"/>
+            <div class="input-group">
+                <label for="a" class="label-input">a</label>
+                <input type="number" placeholder="Cateto a" id="a" step="0.10" class="input">
+            </div>
+            <div class="input-group">
+                <label for="b" class="label-input">b</label>
+                <input type="number" placeholder="Cateto b" id="b" step="0.10" class="input">
+            </div>
+            <div class="input-group">
+                <label for="c" class="label-input">c</label>
+                <input type="number" placeholder="Hipotenusa" id="c" step="0.10" class="input">
+            </div>
+            <div class="input-group">
+                <label for="alpha" class="label-input">α</label>
+                <input type="number" placeholder="Ángulo α (grados)" id="alpha" step="0.10" class="input">
+            </div>
+            <div class="input-group">
+                <label for="beta" class="label-input">β</label>
+                <input type="number" placeholder="Ángulo β (grados)" id="beta" step="0.10" class="input">
+            </div>
+            <button class="button" id="botonCalcular">CALCULAR</button>
+        </section>
+        <section>
+            <div class="contenedor">
+                <div class="procedimiento">
+                    <span style="margin-left: 25px;">Procedimiento:</span>
+                    <ol id="procedimiento">
+                    </ol>
+                </div>
+            </div>
+            <br>
+            <!-- SELECT DATOS -->
+            <div class="contenedor-select">
+            <label class="select" for="selectAngulo">
+                <select id="selectAngulo" required>
+                    <option value="alpha" selected>Ángulo α</option>
+                    <option value="beta">Ángulo β</option>
+                </select>
+                <svg>
+                    <use xlink:href="#select-arrow-down"></use>
+                </svg>
+            </label>
+            <div class="input-group">
+                <label for="seno" class="label-input">sen</label>
+                <input type="number" placeholder="sen(ángulo)" id="seno" class="input" disabled>
+            </div>
+            <div class="input-group">
+                <label for="coseno" class="label-input">cos</label>
+                <input type="number" placeholder="cos(ángulo)" id="coseno" class="input" disabled>
+            </div>
+            <div class="input-group">
+                <label for="tangente" class="label-input">tan</label>
+                <input type="number" placeholder="tan(ángulo)" id="tangente" class="input" disabled>
+            </div>
+            
+            <!-- SVG Sprites -->
+            <svg class="sprites">
+                <symbol id="select-arrow-down" viewBox="0 0 10 6">
+                    <polyline points="1 1 5 5 9 1"></polyline>
+                </symbol>
+            </svg>
+        </section>
+    </article>
+    <script src="index.js"></script>
+</body>
+</html>
