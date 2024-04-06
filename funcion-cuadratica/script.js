@@ -6,6 +6,9 @@ let cEcuacionAlgebraica = 0;
 let valoresABCEcuacionAlgebraica;
 const canvas = document.getElementById("canvasGraficarFuncion");
 const context = canvas.getContext("2d");
+let aumento = 1;
+let disminucion = 1;
+let zoomBucle;
 
 //------------- AL INICIAR -------------//
 window.addEventListener("load", function () {
@@ -36,7 +39,48 @@ document.getElementById("inputNumImgPreimg").addEventListener('input', function(
 //------------- GRAFICAR -------------//
 document.getElementById("botonGraficar").addEventListener('click', function() {
     canvasFondo(canvas, context);
+    restablecerZoomGrafica();
+    canvasFondo(canvas, context);
     graficarParabola(aEcuacionAlgebraica, bEcuacionAlgebraica, cEcuacionAlgebraica, context, "#485d93")
+});
+
+document.getElementById("botonMas").addEventListener("click", function(event) {
+    if (aumento >= 1) {
+        aumento += 1;
+    }
+    else {
+        disminucion -= 1;
+        aumento = 2 / disminucion;
+    }
+    canvasFondo(canvas, context);
+    graficarParabola(aEcuacionAlgebraica,bEcuacionAlgebraica,cEcuacionAlgebraica,context, "#485d93");
+});
+
+document.getElementById("botonZoomOriginal").addEventListener("click", restablecerZoomGrafica);
+
+function restablecerZoomGrafica(){
+    disminucion = 1;
+    let valorAumentarPorVuelta = ((aumento - 1)/5);
+    let animacionCentrar = setInterval(() => {
+        aumento -= valorAumentarPorVuelta;
+        if (aumento == 1 || (aumento <= 1.1 && aumento >= 0.9)) {
+            clearInterval(animacionCentrar);
+            aumento = 1;
+        }
+        canvasFondo(canvas, context);
+        graficarParabola(aEcuacionAlgebraica,bEcuacionAlgebraica,cEcuacionAlgebraica,context, "#485d93");
+    }, 1);
+}
+document.getElementById("botonMenos").addEventListener("click", function(event) {
+    if (aumento > 1) {
+        aumento -= 1;
+    }
+    else {
+        disminucion += 1;
+        aumento = 2 / disminucion;
+    }
+    canvasFondo(canvas, context);
+    graficarParabola(aEcuacionAlgebraica,bEcuacionAlgebraica,cEcuacionAlgebraica,context, "#485d93");
 });
 
 function encontrarABC(ecuacion){
@@ -169,16 +213,16 @@ function canvasFondo(lienzo, contexto) {
         contexto.fillStyle = "#000";
         contexto.textAlign = "center";
         if (i !== 8 && i !== 0 && i !== 16){
-            contexto.fillText(i-8, i*10, 84);
+            contexto.fillText(redondearNum((i-8)/aumento), i*10, 84);
         }
         else if (i === 8){ //0
             continue;
         }
         else if (i === 0){ //-8
-            contexto.fillText(i-8, (i*10)+2, 84); //Para que no quede cortado
+            contexto.fillText(redondearNum((i-8)/aumento), (i*10)+2, 84); //Para que no quede cortado
         }
         else if (i === 16){ //8
-            contexto.fillText(i-8, (i*10)-2, 84); //Para que no quede cortado
+            contexto.fillText(redondearNum((i-8)/aumento), (i*10)-2, 84); //Para que no quede cortado
         }
     }
 
@@ -188,16 +232,16 @@ function canvasFondo(lienzo, contexto) {
         contexto.fillStyle = "#000";
         contexto.textAlign = "center";
         if (i !== 8 && i !== 0 && i !== 16){
-            contexto.fillText(-i+8, 78, i*(10));
+            contexto.fillText(redondearNum((-i+8)/aumento), 78, i*(10));
         }
         else if (i === 8){ //0
-            contexto.fillText(-i+8, 78, i*(10)+4); //Para que no quede cortado
+            contexto.fillText(redondearNum((-i+8)/aumento), 78, i*(10)+4); //Para que no quede cortado
         }
         else if (i === 0){ //-8
-            contexto.fillText(-i+8, 78, i*(10)+3); //Para que no quede cortado
+            contexto.fillText(redondearNum((-i+8)/aumento), 78, i*(10)+3); //Para que no quede cortado
         }
         else if (i === 16){ //5
-            contexto.fillText(-i+8, 78, i*(10)-1); //Para que no quede cortado
+            contexto.fillText(redondearNum((-i+8)/aumento), 78, i*(10)-1); //Para que no quede cortado
         }
     }    
 
@@ -221,14 +265,24 @@ function canvasFondo(lienzo, contexto) {
 function graficarParabola(a,b,c,contexto,color) {
     contexto.beginPath();
     for (let i = (-10000); i < 10000; i++) {
-        let coordenadaX = (i-1)/1000;
+        let coordenadaX = (i-1)/100;
         // Coordenada Y = Imagen de Coordenada X
-        let coordenadaY = (new Decimal(a)).times((new Decimal(coordenadaX)).toPower(2)).plus((new Decimal(b)).times(new Decimal(coordenadaX))).plus(new Decimal(c)).toString();
+        let coordenadaY = (new Decimal(a)).times((new Decimal(coordenadaX)).toPower(2)).plus((new Decimal(b)).times(new Decimal(coordenadaX))).plus(new Decimal(c));
         coordenadaY = parseFloat(coordenadaY);
         contexto.strokeStyle = color;
         contexto.lineWidth = 0.5;
-        contexto.lineTo((coordenadaX*10)+80, (-coordenadaY*10)+80);
-        contexto.moveTo((coordenadaX*10)+80, (-coordenadaY*10)+80);
+        contexto.lineTo((coordenadaX*aumento*10)+80, ((-coordenadaY)*aumento*10)+80);
+        contexto.moveTo((coordenadaX*aumento*10)+80, ((-coordenadaY)*aumento*10)+80);
     }
     contexto.stroke();
+}
+
+function redondearNum(numero) {
+    if (numero % 1 !== 0) {
+        // Si tiene decimales, usar toFixed para formatear a un decimal
+        return numero.toFixed(1);
+      } else {
+        // Si no tiene decimales, devolver el número igual
+        return numero;
+      }
 }
