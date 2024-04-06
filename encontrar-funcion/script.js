@@ -21,11 +21,16 @@ const xPuntoJ = document.getElementById("xPuntoJ");
 const yPuntoJ = document.getElementById("yPuntoJ");
 const puntos = [[xPuntoH,yPuntoH],[xPuntoI,yPuntoI],[xPuntoJ,yPuntoJ]];
 let puntoEnfocado = 0; //Punto H
+let aumento = 1;
+let disminucion = 1;
+let zoomBucle;
 
 window.addEventListener("load", function () { //Al iniciar
     //Fondo de la Grafica
     context.scale(1*(5), 1*(5));
-    canvasFondo(canvas, context);
+    graficarPuntosHIJ();
+    document.getElementById("funcion").innerHTML = "f(x) = "+calcularFuncion();
+    graficarParabola(aEcuacionMetRed,bEcuacionMetRed,cEcuacionMetRed);
 });
 
 //------------- PUNTO -------------//
@@ -33,14 +38,50 @@ document.getElementById("canvasGraficarFuncion").addEventListener("click", funct
     let posicion = document.getElementById("canvasGraficarFuncion").getBoundingClientRect(); //Posicion en la pantalla
     let coordX = (event.clientX - posicion.left);     // Obtén la coordenada horizontal del mouse
     let coordY = (event.clientY - posicion.top);     // Obtén la coordenada vertical del mouse
-    coordX = (coordX/25)-8; //Coordenada numero normal
-    coordY = -(coordY/25)+8; //Coordenada numero normal
+    coordX = ((coordX/25)-8)*aumento; //Coordenada numero normal
+    coordY = (-(coordY/25)+8)*aumento; //Coordenada numero normal
     puntos[puntoEnfocado][0].value = parseFloat(coordX.toFixed(1));
     puntos[puntoEnfocado][1].value = parseFloat(coordY.toFixed(1));
-    //graficarPunto(coordX, coordY)
     let eventoChange = new Event('change');
     puntos[puntoEnfocado][0].dispatchEvent(eventoChange);
     puntos[puntoEnfocado][1].dispatchEvent(eventoChange);
+});
+
+document.getElementById("botonMas").addEventListener("click", function(event) {
+    if (aumento >= 1) {
+        aumento += 1;
+    }
+    else {
+        disminucion -= 1;
+        aumento = 2 / disminucion;
+    }
+    graficarPuntosHIJ();
+    graficarParabola(aEcuacionMetRed,bEcuacionMetRed,cEcuacionMetRed);
+});
+
+document.getElementById("botonZoomOriginal").addEventListener("click", function(event) {
+    disminucion = 1;
+    let valorAumentarPorVuelta = ((aumento - 1)/5);
+    let animacionCentrar = setInterval(() => {
+        aumento -= valorAumentarPorVuelta;
+        if (aumento == 1 || (aumento <= 1.1 && aumento >= 0.9)) {
+            clearInterval(animacionCentrar);
+            aumento = 1;
+        }
+        graficarPuntosHIJ();
+        graficarParabola(aEcuacionMetRed,bEcuacionMetRed,cEcuacionMetRed);
+    }, 1);
+});
+document.getElementById("botonMenos").addEventListener("click", function(event) {
+    if (aumento > 1) {
+        aumento -= 1;
+    }
+    else {
+        disminucion += 1;
+        aumento = 2 / disminucion;
+    }
+    graficarPuntosHIJ();
+    graficarParabola(aEcuacionMetRed,bEcuacionMetRed,cEcuacionMetRed);
 });
 
 for (let i = 0; i < puntos.length; i++) { //Ej: Punto = H
@@ -100,9 +141,9 @@ function calcularFuncion() {
     puntoJ = obtenerPunto(xPuntoJ.value, yPuntoJ.value);
     }
     else {
-        puntoH = obtenerPunto(xPuntoI.value, yPuntoI.value);
-        puntoI = obtenerPunto(xPuntoH.value, yPuntoH.value);
-        puntoJ = obtenerPunto(xPuntoJ.value, yPuntoJ.value);
+        puntoH = obtenerPunto(xPuntoJ.value, yPuntoJ.value);
+        puntoI = obtenerPunto(xPuntoI.value, yPuntoI.value);
+        puntoJ = obtenerPunto(xPuntoH.value, yPuntoH.value);
     }
 
     //Calcular A
@@ -186,16 +227,16 @@ function canvasFondo(lienzo, contexto) {
         contexto.fillStyle = "#000";
         contexto.textAlign = "center";
         if (i !== 8 && i !== 0 && i !== 16){
-            contexto.fillText(i-8, i*10, 84);
+            contexto.fillText(redondearNum((i-8)/aumento), i*10, 84);
         }
         else if (i === 8){ //0
             continue;
         }
         else if (i === 0){ //-8
-            contexto.fillText(i-8, (i*10)+2, 84); //Para que no quede cortado
+            contexto.fillText(redondearNum((i-8)/aumento), (i*10)+2, 84); //Para que no quede cortado
         }
         else if (i === 16){ //8
-            contexto.fillText(i-8, (i*10)-2, 84); //Para que no quede cortado
+            contexto.fillText(redondearNum((i-8)/aumento), (i*10)-2, 84); //Para que no quede cortado
         }
     }
 
@@ -205,16 +246,16 @@ function canvasFondo(lienzo, contexto) {
         contexto.fillStyle = "#000";
         contexto.textAlign = "center";
         if (i !== 8 && i !== 0 && i !== 16){
-            contexto.fillText(-i+8, 78, i*(10));
+            contexto.fillText(redondearNum((-i+8)/aumento), 78, i*(10));
         }
         else if (i === 8){ //0
-            contexto.fillText(-i+8, 78, i*(10)+4); //Para que no quede cortado
+            contexto.fillText(redondearNum((-i+8)/aumento), 78, i*(10)+4); //Para que no quede cortado
         }
         else if (i === 0){ //-8
-            contexto.fillText(-i+8, 78, i*(10)+3); //Para que no quede cortado
+            contexto.fillText(redondearNum((-i+8)/aumento), 78, i*(10)+3); //Para que no quede cortado
         }
         else if (i === 16){ //5
-            contexto.fillText(-i+8, 78, i*(10)-1); //Para que no quede cortado
+            contexto.fillText(redondearNum((-i+8)/aumento), 78, i*(10)-1); //Para que no quede cortado
         }
     }    
 
@@ -242,7 +283,7 @@ function graficarPunto (x, y) {
     context.strokeStyle = "#191e3a";
     context.fillStyle = "#7d9fe5";
     context.lineWidth = 1;
-    context.arc(((valorX+8)*10), (-(valorY-8))*10, .5, 0, 2 * Math.PI);
+    context.arc((valorX*10*aumento)+80, (-(valorY)*10*aumento)+80, .5, 0, 2 * Math.PI);
     context.stroke();
     context.fill();
 }
@@ -250,14 +291,24 @@ function graficarPunto (x, y) {
 function graficarParabola(a,b,c) {
     context.beginPath();
     for (let i = (-10000); i < 10000; i++) {
-        let coordenadaX = (i-1)/1000;
+        let coordenadaX = (i-1)/100;
         // Coordenada Y = Imagen de Coordenada X
-        let coordenadaY = (new Decimal(a)).times((new Decimal(coordenadaX)).toPower(2)).plus((new Decimal(b)).times(new Decimal(coordenadaX))).plus(new Decimal(c)).toString();
+        let coordenadaY = (new Decimal(a)).times((new Decimal(coordenadaX)).toPower(2)).plus((new Decimal(b)).times(new Decimal(coordenadaX))).plus(new Decimal(c));
         coordenadaY = parseFloat(coordenadaY);
         context.strokeStyle = "#485d93";
         context.lineWidth = 0.5;
-        context.lineTo((coordenadaX*10)+80, (-coordenadaY*10)+80);
-        context.moveTo((coordenadaX*10)+80, (-coordenadaY*10)+80);
+        context.lineTo((coordenadaX*aumento*10)+80, ((-coordenadaY)*aumento*10)+80);
+        context.moveTo((coordenadaX*aumento*10)+80, ((-coordenadaY)*aumento*10)+80);
     }
     context.stroke();
+}
+
+function redondearNum(numero) {
+    if (numero % 1 !== 0) {
+        // Si tiene decimales, usar toFixed para formatear a un decimal
+        return numero.toFixed(1);
+      } else {
+        // Si no tiene decimales, devolver el número igual
+        return numero;
+      }
 }
