@@ -1,110 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="msapplication-tap-highlight" content="no">
-    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
-    <meta name="color-scheme" content="light dark">
-    <link rel="stylesheet" href="css/index.css">
-    <title>Anotador de Truco</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anotador de Truco Online Gratis</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
-
 <body>
-    <div class="grid_container">
-        <div class="nos">
-            <input id="inputnos" type="text" value="Nosotros">
-            <p class="contador" id="contadorNos">0 Malas</p>
-            <hr><br>
-            <div class="cont-bloques">
-                <div class="bloque">
-                    <div id="2" class="palo top"></div>
-                    <div id="1" class="palo left"></div>
-                    <div id="5" class="palo diagonal"></div>
-                    <div id="3" class="palo right"></div>
-                    <div id="4" class="palo bottom"></div>
-                </div>
-                <div class="bloque">
-                    <div id="7" class="palo top"></div>
-                    <div id="6" class="palo left"></div>
-                    <div id="10" class="palo diagonal"></div>
-                    <div id="8" class="palo right"></div>
-                    <div id="9" class="palo bottom"></div>
-                </div>
-                <div class="bloque">
-                    <div id="12" class="palo top"></div>
-                    <div id="11" class="palo left"></div>
-                    <div id="15" class="palo diagonal"></div>
-                    <div id="13" class="palo right"></div>
-                    <div id="14" class="palo bottom"></div>
-                </div>
-                <div class="bloque">
-                    <div id="17" class="palo top"></div>
-                    <div id="16" class="palo left"></div>
-                    <div id="20" class="palo diagonal"></div>
-                    <div id="18" class="palo right"></div>
-                    <div id="19" class="palo bottom"></div>
-                </div>
-            </div>
-            <div id="nos_buttons" class="buttons_container">
-                <a href="javascript:void(0);" onclick="sumarRestarPuntos('nos', 'sumar')">+</a>
-                <a href="javascript:void(0);" onclick="sumarRestarPuntos('nos', 'restar')">-</a>
-            </div>
-        </div>
-        <div class="linea"></div>
-
-        <div class="ellos">
-            <input id="inputellos" type="text" value="Ellos">
-            <p class="contador" id="contadorEllos">0 Malas</p>
-            <hr><br>
-            <div class="cont-bloques">
-                <div class="bloque">
-                    <div id="102" class="palo top"></div>
-                    <div id="101" class="palo left"></div>
-                    <div id="105" class="palo diagonal"></div>
-                    <div id="103" class="palo right"></div>
-                    <div id="104" class="palo bottom"></div>
-                </div>
-                <div class="bloque">
-                    <div id="107" class="palo top"></div>
-                    <div id="106" class="palo left"></div>
-                    <div id="110" class="palo diagonal"></div>
-                    <div id="108" class="palo right"></div>
-                    <div id="109" class="palo bottom"></div>
-                </div>
-                <div class="bloque">
-                    <div id="112" class="palo top"></div>
-                    <div id="111" class="palo left"></div>
-                    <div id="115" class="palo diagonal"></div>
-                    <div id="113" class="palo right"></div>
-                    <div id="114" class="palo bottom"></div>
-                </div>
-                <div class="bloque">
-                    <div id="117" class="palo top"></div>
-                    <div id="116" class="palo left"></div>
-                    <div id="120" class="palo diagonal"></div>
-                    <div id="118" class="palo right"></div>
-                    <div id="119" class="palo bottom"></div>
-                </div>
-            </div>
-            <div id="ellos_buttons" class="buttons_container">
-                <a href="javascript:void(0);" onclick="sumarRestarPuntos('ellos', 'sumar')">+</a>
-                <a href="javascript:void(0);" onclick="sumarRestarPuntos('ellos', 'restar')">-</a>
-            </div>
-        </div>
-    </div>
-    <a href="javascript:void(0);" onclick="mostrarMenu();" id="ajustes" class="ajustes">40</a>
-    <div id="menu" class="displaynone">
-        <a href="javascript:void(0);" onclick="cambiarPuntosGanar(10);">20</a>
-        <a href="javascript:void(0);" onclick="cambiarPuntosGanar(12);">24</a>
-        <a href="javascript:void(0);" onclick="cambiarPuntosGanar(15);">30</a>
-        <a href="javascript:void(0);" onclick="cambiarPuntosGanar(20);">40</a>
-    </div>
-    <div id="alerta" class="alerta displaynone">
-        <span class="cerrarBtnAlerta" onclick="window.location.reload();">&times;</span>
-    </div>
-    <script src="js/index.js"></script>
+    <button onclick='window.location = "./game/index.html"'>INICIAR</button>
 </body>
 
 </html>

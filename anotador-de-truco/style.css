@@ -1,0 +1,78 @@
+body {
+    background-image: url("./foto-anotador-truco.png");
+    background-size: cover;
+    background-position: 50% 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Noto Sans';
+    background-color: #524d4b;
+    color: #fff;
+    font-size: 15.7px;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+}
+
+button, a {
+    background-color: #2332a0;
+    border: none;
+    color: #fff;
+    width: calc(calc(768.52px * 0.328822)*0.62);
+    height: calc(calc(256px * 0.328822)*0.62);
+    border-radius: 13.5px;
+    transition: color .15s, background-color .15s;
+    text-align: center;
+}
+a {
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+}
+
+button:hover {
+    background-color: rgba(35, 50, 160, .8);
+}
+.menu {
+    background-color: #fff;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    z-index: 1000;
+}
+.btnalt {
+    background: none;
+    color: #2332a0;
+    width: initial;
+    margin: 0;
+    border-radius: 0;
+}
+.btnalt:first-child {
+    padding-left: 15px;
+    padding-right: 15px;
+    border-right: 1px solid #2332a077;
+}
+.btnalt:last-child {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.btnalt:hover {
+    color: #fff;
+    background-color: #2332a0;
+}
+.btnalt:hover img{
+    filter: brightness(1000%);
+}
+.iframe {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border: none;
+}
+img {
+    width: 24px;
+    height:24px;
+}
