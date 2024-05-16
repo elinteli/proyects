@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anotador de Truco Online Gratis</title>    
+    <link rel="stylesheet" href="../style.css">
+</head>
+<script>
+    function fullScreen () {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+            document.getElementById("btn-fullscreen").innerHTML = `<img src="../fullscreen_exit.png" alt="fullscreen exit icon">`;
+        }
+        else {
+            document.exitFullscreen();
+            document.getElementById("btn-fullscreen").innerHTML = `<img src="../fullscreen.png" alt="fullscreen icon">`;
+        }
+    }
+</script>
+<body>
+    <div class="menu">
+        <button id="btn-fullscreen" class="btnalt" onclick='fullScreen()'>
+            <img src="../fullscreen.png" alt="fullscreen icon">
+        </button>
+    </div>
+    <iframe class="iframe" src="../source/index.html"></iframe>
+</body>
+
+</html>
