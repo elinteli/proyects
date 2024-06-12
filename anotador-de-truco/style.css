@@ -1,7 +1,4 @@
 body {
-    background-image: url("./foto-anotador-truco.png");
-    background-size: cover;
-    background-position: 50% 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -11,7 +8,15 @@ body {
     width: 100vw;
     margin: 0;
 }
-
+#body-menu {
+    background-image: url("./foto-anotador-truco.png");
+    background-size: cover;
+    background-position: 50% 50%;
+    height: 100vh;
+}
+#body-juego {
+    background-color: #111;
+}
 button, a {
     background-color: #2332a0;
     border: none;
