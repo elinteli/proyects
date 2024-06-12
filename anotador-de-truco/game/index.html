@@ -10,7 +10,7 @@
 <script>
     function fullScreen () {
         if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen();
+            document.body.requestFullscreen();
             document.getElementById("btn-fullscreen").innerHTML = `<img src="../fullscreen_exit.png" alt="fullscreen exit icon">`;
         }
         else {
