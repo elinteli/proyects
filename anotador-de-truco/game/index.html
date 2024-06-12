@@ -17,7 +17,13 @@
             document.exitFullscreen();
             document.getElementById("btn-fullscreen").innerHTML = `<img src="../fullscreen.png" alt="fullscreen icon">`;
         }*/
-        window.parent.postMessage('buttonClicked', 'http://localhost:3000/');
+        window.parent.postMessage(
+    {
+        event_id: 'anotador_de_truco',
+        data: "fullscreen"
+    }, 
+    "*"
+); 
     }
 </script>
 <body>
