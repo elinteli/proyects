@@ -9,21 +9,14 @@
 </head>
 <script>
     function fullScreen () {
-        /*if (!document.fullscreenElement) {
+        if (!document.fullscreenElement) {
             document.body.requestFullscreen();
             document.getElementById("btn-fullscreen").innerHTML = `<img src="../fullscreen_exit.png" alt="fullscreen exit icon">`;
         }
         else {
             document.exitFullscreen();
             document.getElementById("btn-fullscreen").innerHTML = `<img src="../fullscreen.png" alt="fullscreen icon">`;
-        }*/
-        window.parent.postMessage(
-    {
-        event_id: 'anotador_de_truco',
-        data: "fullscreen"
-    }, 
-    "*"
-); 
+        }
     }
 </script>
 <body style="background-color: #111">
