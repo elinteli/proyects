@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anotador de Truco Online Gratis</title>    
+    <link rel="stylesheet" href="../style.css">
+</head>
+<script>
+    function fullScreen () {
+        window.parent.postMessage("fullscreen-iframe-anot-truc", "*"); 
+    }
+</script>
+<body style="background-color: #111">
+    <div class="menu">
+        <button id="btn-fullscreen" class="btnalt" onclick="fullScreen()">
+            <img src="../fullscreen.png" alt="fullscreen icon">
+        </button><a class="btnalt" href="https://anotador-de-truco.netlify.app/game/" target="_blank">
+            <img src="../open_in_new.png" alt="open in new tab icon">
+            </a>
+    </div>
+    <iframe class="iframe" src="../source/index.html"></iframe>
+</body>
+
+</html>
