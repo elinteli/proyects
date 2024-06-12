@@ -8,10 +8,21 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <script>
+    function fullScreen () {
+        /*if (!document.fullscreenElement) {
+            document.body.requestFullscreen();
+            document.getElementById("btn-fullscreen").innerHTML = `<img src="../fullscreen_exit.png" alt="fullscreen exit icon">`;
+        }
+        else {
+            document.exitFullscreen();
+            document.getElementById("btn-fullscreen").innerHTML = `<img src="../fullscreen.png" alt="fullscreen icon">`;
+        }*/
+        window.parent.postMessage('buttonClicked', 'https://your-domain.com');
+    }
 </script>
 <body>
     <div class="menu">
-        <button id="btn-fullscreen" class="btnalt">
+        <button id="btn-fullscreen" class="btnalt" onclick="fullScreen">
             <img src="../fullscreen.png" alt="fullscreen icon">
         </button>
     </div>
